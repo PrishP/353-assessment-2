@@ -66,3 +66,4 @@ print("Rows after removing missing ArrDelay:", len(clean_df))
 
 
 print("\nFinal Cleaned Dataset Shape:", clean_df.shape)
+clean_df.to_csv("US Airline Data/clean_data.csv")
