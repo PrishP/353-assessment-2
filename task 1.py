@@ -3,9 +3,9 @@ import numpy as np
 
    
 # 1. Load Monthly Datasets
-Jan = pd.read_csv("data/US Airline Data/flight_delays_2025_01.csv")
-Feb = pd.read_csv("data/US Airline Data/flight_delays_2025_02.csv")
-Dec = pd.read_csv("data/US Airline Data/flight_delays_2025_12.csv")
+Jan = pd.read_csv("US Airline Data/flight_delays_2025_01.csv")
+Feb = pd.read_csv("US Airline Data/flight_delays_2025_02.csv")
+Dec = pd.read_csv("US Airline Data/flight_delays_2025_12.csv")
 
 dataset = {
     "January": Jan,
