@@ -23,7 +23,7 @@ print("y_train :", len(y_train))
 print("x_test :", len(x_test))
 print("y_test :", len(y_test))
 
-#random forest classifire
+#random forest classifier
 rf_model = RandomForestClassifier(random_state=42, class_weight="balanced")
 rf_model.fit(pd.DataFrame(x_train), y_train)
 y_pred_rf = rf_model.predict(x_test)
