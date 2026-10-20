@@ -9,11 +9,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 import xgboost as xgb
 
-traindf = pd.read_csv("US Airline Data/clean_data.csv")
+traindf = pd.read_csv("US Airline Data/arrival_delay_data.csv")
 
 
-x = traindf["DepDelay"]
-y = traindf["ArrDelay"]
+x = traindf[["DepDelay","Distance"]]
+y = traindf["Arrival_Disruption_Severity"]
 x.info()
 y.info()
 
@@ -22,6 +22,14 @@ print("x_train :", len(x_train))
 print("y_train :", len(y_train))
 print("x_test :", len(x_test))
 print("y_test :", len(y_test))
+
+lin_model = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
+lin_model.fit(pd.DataFrame(x_train), y_train)
+y_pred_lin = lin_model.predict(x_test)
+print("Logistic Regression:")
+print("Accuracy:", accuracy_score(y_test, y_pred_lin))
+print("Classification Report:\n", classification_report(y_test, y_pred_lin))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_lin))
 
 #random forest classifier
 rf_model = RandomForestClassifier(random_state=42, class_weight="balanced")
