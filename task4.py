@@ -12,7 +12,7 @@ import xgboost as xgb
 traindf = pd.read_csv("US Airline Data/arrival_delay_data.csv")
 
 
-x = traindf[["DepDelay","Distance"]]
+x = traindf[["DepDelay"]]
 y = traindf["Arrival_Disruption_Severity"]
 x.info()
 y.info()
