@@ -40,7 +40,7 @@ print("Accuracy:", accuracy_score(y_test, y_pred_rf))
 print("Classification Report:\n", classification_report(y_test, y_pred_rf))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_rf))
 
-xg_model = xgb(random_state=42, class_weight="balanced")
+xg_model = xgb()
 xg_model.fit(pd.DataFrame(x_train), y_train)
 y_pred_xg = xg_model.predict(x_test)
 print("XGBoost Classifier:")
