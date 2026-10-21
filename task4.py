@@ -12,7 +12,7 @@ import xgboost as xgb
 traindf = pd.read_csv("US Airline Data/arrival_delay_data.csv")
 
 
-x = traindf[["DepDelay"]]
+x = traindf[["DepDelay", "Month", "Distance"]]
 y = traindf["Arrival_Disruption_Severity"]
 x.info()
 y.info()
@@ -40,10 +40,18 @@ print("Accuracy:", accuracy_score(y_test, y_pred_rf))
 print("Classification Report:\n", classification_report(y_test, y_pred_rf))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_rf))
 
+xg_model = xgb(random_state=42, class_weight="balanced")
+xg_model.fit(pd.DataFrame(x_train), y_train)
+y_pred_xg = xg_model.predict(x_test)
+print("XGBoost Classifier:")
+print("Accuracy:", accuracy_score(y_test, y_pred_xg))
+print("Classification Report:\n", classification_report(y_test, y_pred_xg))
+print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_xg))
+
 y_prob_rf = rf_model.predict_proba(x_test)[:, 1] # Random Forest
 #y_prob_svm = svm_model.decision_function(x_test) # SVM
-#y_prob_lr = lr_model.predict_proba(x_test)[:, 1] # Logistic Regression
-#y_prob_xgb = xgb_model.predict_proba(x_test)[:, 1] # # XGBoost
+y_prob_lin = lin_model.predict_proba(x_test)[:, 1] # Logistic Regression
+y_prob_xg = xg_model.predict_proba(x_test)[:, 1] # # XGBoost
 
 #regr = linear_model.LinearRegression()
 #regr.fit(x, y)
