@@ -26,7 +26,7 @@ print("y_train :", len(y_train))
 print("x_test :", len(x_test))
 print("y_test :", len(y_test))
 
-lin_model = LogisticRegression(max_iter=1000, random_state=42)
+lin_model = LogisticRegression(max_iter=1000, class_weight="balanced", random_state=42)
 lin_model.fit(pd.DataFrame(x_train), y_train)
 y_pred_lin = lin_model.predict(x_test)
 print("Logistic Regression:")
@@ -35,7 +35,7 @@ print("Classification Report:\n", classification_report(y_test, y_pred_lin))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred_lin))
 
 #random forest classifier
-rf_model = RandomForestClassifier(random_state=42)
+rf_model = RandomForestClassifier(random_state=42, class_weight="balanced")
 rf_model.fit(pd.DataFrame(x_train), y_train)
 y_pred_rf = rf_model.predict(x_test)
 print("Random Forest Classifier:")
